@@ -1,0 +1,8 @@
+input for loop
+board structure
+input for 9 values
+user move
+comp move
+is any free space left
+winner
+post work
