@@ -24,3 +24,44 @@ def isboardfull(board):
         return False 
     else:
         return True
+
+def iswinner(b,l):
+    return ((b[1] == l and b[2] == l and b[3] == l) or
+    (b[4] == l and b[5] == l and b[6] == l) or
+    (b[7] == l and b[8] == l and b[9] == l) or
+    (b[1] == l and b[4] == l and b[7] == l) or              
+    (b[2] == l and b[5] == l and b[8] == l) or
+    (b[3] == l and b[6] == l and b[9] == l) or
+    (b[1] == l and b[5] == l and b[9] == l) or             
+    (b[3] == l and b[5] == l and b[7] == l))
+
+def playermove():
+    run = True
+    while run:
+        move = input("Please select a position to enter the X b\w 1-9: ")
+        try:
+            move = int(move)
+            if move > 0 and move < 10:
+                if spaceisfree(move):
+                 run = False
+                 insertLetter('X' , move)
+                else:
+                    print('Sorry this space is occupied')
+            else:
+                print("Please enter a number b\w 1 and 9: ")
+        except:
+            print("Please type a number :")
+
+def computerMove(): #ai
+    possiblemoves = [x for x , letter in enumerate(board) if letter == '' and X != 0]
+    move = 0
+
+    for let in ['0' , 'X']:
+        for i in possiblemoves:
+            boardcopy = board[:]
+            boardcopy[i] = let
+            if iswinner(boardcopy, let):
+                move = i
+                return move
+
+        
